@@ -1,0 +1,65 @@
+<div class="animated fadeIn">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 5px !important;">
+			<button class="btn btn-warning pull-right" type="button" [routerLink]="['/company/addcompany']"> <i class="fa fa-plus"></i> &nbsp; Add Company </button>
+		</div>
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			<div class="card">
+				<div class="card-header"><i class="fa fa-align-justify"></i> Registered Companies
+          <input type="text" style="padding:8px;float: right;width:30%;" placeholder="Type to filter the company/location..." (keyup)="updateFilter($event)" />
+        </div>
+				<div class="card-body">
+          <ngx-datatable style="width: auto;" class="material striped" [rows]="companyList" [headerHeight]="50" [footerHeight]="50"
+                [rowHeight]="60" [sorts]="[{prop: 'id', dir: 'asc'}]" [limit]="10" [columnMode]="'force'">
+                <ngx-datatable-column prop="id" name="ID" [resizeable]="true">
+                  <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                    {{rowIndex+1}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column prop="companyName" name="Company" [resizeable]="true">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.companyName}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column prop="contactPerson" name="Contact Person" [resizeable]="true">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.contactPerson}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column prop="location" name="Location" [resizeable]="true">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.city}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column prop="registeredOn" name="Registered On" [resizeable]="true">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.createdOn|date:'MM/dd/yyyy'}}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column prop="status" name="Status" [resizeable]="true">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <span class="badge" [ngClass]="{ 'badge-success': row.status == 'Active', 'badge-danger': row.status == 'Inactive', 'badge-secondary': row.status == 'Blocked', 'badge-warning': row.status == 'Pending' }">
+                        {{row.status}}
+                      </span>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Actions" [resizeable]="true" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <button class="btn btn-md btn-ghost-dark" type="button" (click)="onViewClick(row._id)" > <i class="fa fa-search"></i> </button>
+                      <button *ngIf="row.status == 'Active'" class="btn btn-md btn-ghost-primary" type="button" (click)="onUpdateClick(row._id)"> <i class="fa fa-edit"></i> </button>
+                      <button *ngIf="row.status == 'Active'" class="btn btn-md btn-ghost-danger" type="button"  (click)="onDeleteClick(row._id)"> <i class="fa fa-trash"></i> </button>
+                  </ng-template>
+                </ngx-datatable-column>
+          </ngx-datatable>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

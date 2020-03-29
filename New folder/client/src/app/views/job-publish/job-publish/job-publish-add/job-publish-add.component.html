@@ -1,0 +1,98 @@
+<div class="col-sm-12 col-md">
+	<div class="card">
+		<div class="card-header">
+      <small>Create</small>
+	  <strong>Job</strong>
+	  <button class="btn btn-pill btn-light pull-right" (click)="onBack()"><i class="icons mt-1 cui-action-undo"></i> Back to list </button>
+		</div>
+		<div class="card-body">
+      <form [formGroup]="jobPublishForm">
+			<div class="form-group">
+				<label for="company">Company dropdown</label>
+				<select class="custom-select"  formControlName="companyName">
+					<option value="" disabled>Choose your city</option>
+					<option *ngFor="let city of companyList" [ngValue]="city._id">{{city.companyName}}</option>
+				 </select>
+				<div *ngIf="submitted && f.companyName.errors" class="errMsg">* Please select company </div>
+
+				<!-- <input class="form-control onlyBtm" formControlName="companyName" type="text" placeholder="Enter your company name"> -->
+            </div>
+            
+            <div class="form-group">
+				<label for="company">Job Name</label>
+				<input class="form-control onlyBtm" formControlName="jobName" type="text" placeholder="Enter Job Code">
+				<div *ngIf="submitted && f.jobName.errors" class="errMsg">* Job Code required</div>
+            </div>
+            <div class="form-group">
+				<label for="company">Industry</label>
+				<input class="form-control onlyBtm" formControlName="industry" type="text" placeholder="Enter Industry">
+				<div *ngIf="submitted && f.industry.errors" class="errMsg">* Industry required</div>
+            </div>
+            <div class="form-group">
+				<label for="company">Job Type</label>
+				<input class="form-control onlyBtm" formControlName="jobType" type="text" placeholder="Enter Job Type">
+				<div *ngIf="submitted && f.jobType.errors" class="errMsg">* Job Type required</div>
+            </div>
+            
+            <div class="form-group">
+				<label for="company">Designation</label>
+				<input class="form-control onlyBtm" formControlName="designation" type="text" placeholder="Enter Designation">
+				<div *ngIf="submitted && f.designation.errors" class="errMsg">* Designation required</div>
+            </div>
+            
+            <div class="form-group">
+				<label for="company">Job Location</label>
+				<input class="form-control onlyBtm" formControlName="location" type="text" placeholder="Enter Job Location">
+				<div *ngIf="submitted && f.location.errors" class="errMsg">* Job Location required</div>
+            </div>
+            
+            <div class="form-group">
+				<label for="company">Description</label>
+				<input class="form-control onlyBtm" formControlName="description" type="text" placeholder="Enter discription">
+				<div *ngIf="submitted && f.description.errors" class="errMsg">* Description required</div>
+            </div>
+            <div class="form-group">
+				<label for="company">Vacancy</label>
+				<input class="form-control onlyBtm" formControlName="vacancy" type="text" placeholder="Enter vacancy">
+				<div *ngIf="submitted && f.vacancy.errors" class="errMsg">* Vacancy required</div>
+            </div>
+            <div class="form-group">
+				<label for="company">Qualification</label>
+				<input class="form-control onlyBtm" formControlName="qualification" type="text" placeholder="Enter qualification">
+				<div *ngIf="submitted && f.qualification.errors" class="errMsg">* Qualification required</div>
+            </div>
+            <div class="form-group">
+				<label for="company">Experience</label>
+				<input class="form-control onlyBtm" formControlName="experience" type="text" placeholder="Enter Experience">
+				<div *ngIf="submitted && f.experience.errors" class="errMsg">* Experience required</div>
+            </div>
+            <div class="form-group">
+				<label for="company">Skills</label>
+				<input class="form-control onlyBtm" formControlName="skills" type="text" placeholder="Enter Skills">
+				<div *ngIf="submitted && f.skills.errors" class="errMsg">* Skills required</div>
+            </div>
+            <div class="form-group">
+				<label for="company">DOP</label>
+				<ejs-datepicker id='datepicker' placeholder='Select a date' formControlName="dop" [value]='dop' format ='dd-MM-yyyy'></ejs-datepicker>
+				<!-- <input class="form-control onlyBtm" formControlName="dop" type="text" placeholder="Enter DOP"> -->
+				<div *ngIf="submitted && f.dop.errors" class="errMsg">* Company DOP required</div>
+            </div>
+            <div class="form-group">
+				<label for="company">Expiry Date</label>
+				<ejs-datepicker id='datepicker' placeholder='Select a date' formControlName="expiryDate" [value]='expiryDate' ></ejs-datepicker>
+				<!-- <input class="form-control onlyBtm" formControlName="expiryDate" type="text" placeholder="Enter expiry date"> -->
+				<div *ngIf="submitted && f.expiryDate.errors" class="errMsg">* Expiry Date required</div>
+            </div>
+
+			
+			
+
+			
+      </form>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-warning" type="submit" (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i> Submit</button>
+			<button class="btn btn-danger" type="reset" (click)="onReset()"><i class="fa fa-ban"></i> Reset</button>
+		</div>
+	</div>
+</div>

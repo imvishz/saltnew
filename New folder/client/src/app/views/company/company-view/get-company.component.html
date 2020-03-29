@@ -1,0 +1,106 @@
+<div class="col-sm-12 col-md">
+	<div class="card">
+		<div class="card-header">
+      <small>{{feature}}</small>
+      <strong>Company</strong>
+			<button *ngIf="!isUpdating" class="btn btn-pill btn-light pull-right" (click)="onReset()"><i class="icons mt-1 cui-action-undo"></i> Back to list </button>
+		</div>
+		<div class="card-body">
+      <form>
+			<div class="form-group">
+				<label for="company">Company Name</label>
+				<input class="form-control onlyLable" name="companyName" type="text" [disabled]="!isUpdating" [(ngModel)]="companyDetail.companyName" #companyName="ngModel">
+			</div>
+
+			<div class="form-group">
+				<label for="email">Company Email</label>
+				<input class="form-control onlyLable" name="email" type="email" [disabled]="!isUpdating" [(ngModel)]="companyDetail.email" #email="ngModel">
+			</div>
+
+			<div class="form-group">
+				<label for="contactPerson">Contact Person</label>
+				<input class="form-control onlyLable" name="contactPerson" type="text" [disabled]="!isUpdating" [(ngModel)]="companyDetail.contactPerson" #contactPerson="ngModel">
+			</div>
+
+			<div class="form-group">
+				<label for="contactNo">Contact Number</label>
+				<input class="form-control onlyLable" name="contactNo" type="text" [disabled]="!isUpdating" [(ngModel)]="companyDetail.contactNo" #contactNo="ngModel">
+			</div>
+
+			<div class="form-group">
+				<label for="street">Street</label>
+				<input class="form-control onlyLable" name="street" type="text" [disabled]="!isUpdating" [(ngModel)]="companyDetail.street" #street="ngModel">
+			</div>
+
+			<div class="row">
+				<div class="form-group col-sm-4">
+					<label for="city">City</label>
+					<input class="form-control onlyLable" name="city" type="text" [disabled]="!isUpdating" [(ngModel)]="companyDetail.city" #city="ngModel">
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="postalCode">Postal Code</label>
+					<input class="form-control onlyLable" name="postalCode" type="text" [disabled]="!isUpdating" [(ngModel)]="companyDetail.postalCode" #postalCode="ngModel">
+				</div>
+				<div class="form-group col-sm-4">
+          <label for="country">Country</label>
+  				<input class="form-control onlyLable" name="country" type="text" [disabled]="!isUpdating" [(ngModel)]="companyDetail.country" #country="ngModel">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="street">Business License</label><br/>
+				<a href="{{downloadImage}}"  download="{{companyDetail.fileName}}" target="_blank">
+					<img src="{{downloadImage}}" alt="W3Schools" width="150" height="75">
+				</a>
+			</div>
+			
+			<div class="card-footer" *ngIf="companyDetail.status == 'Pending'">
+				Current Status : <b> {{companyDetail.status}} </b> &nbsp;&nbsp; <i class="fa fa-long-arrow-right fa-lg"></i> &nbsp;&nbsp;
+				<button class="btn btn-xing" type="submit" (click)="confirmModal.show();updateClick('Active')"><i class="fa fa-thumbs-o-up"></i> Approve </button>
+				<button class="btn btn-youtube" type="submit" (click)="confirmModal.show();updateClick('Rejected')"><i class="fa fa-thumbs-o-down"></i> Reject </button>
+			</div>
+
+			<div class="card-footer" *ngIf="companyDetail.status == 'Active'">
+				Current Status : <b> {{companyDetail.status}} </b> &nbsp;&nbsp; <i class="fa fa-long-arrow-right fa-lg"></i> &nbsp;&nbsp;
+				<button class="btn btn-foursquare" type="submit" (click)="confirmModal.show();updateClick('Inactive')"><i class="fa fa-times"></i> Inactive </button>
+				<button class="btn btn-tumblr" type="submit" (click)="confirmModal.show();updateClick('Blocked')"><i class="fa fa-ban"></i> Block </button>
+			</div>
+
+			<div class="card-footer" *ngIf="companyDetail.status != 'Active' && companyDetail.status != 'Pending'">
+				Current Status : <b> {{companyDetail.status}} </b> &nbsp;&nbsp; <i class="fa fa-long-arrow-right fa-lg"></i> &nbsp;&nbsp;
+				<button class="btn btn-vine" type="submit" (click)="confirmModal.show();updateClick('Active')"><i class="fa fa-check"></i> Active </button>
+			</div>
+
+      </form>
+		</div>
+		<div class="card-footer" *ngIf="isUpdating">
+			<button class="btn btn-warning" type="submit" (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i> Update </button>
+			<button class="btn btn-danger" type="reset" (click)="onReset()"><i class="fa fa-ban"></i> Cancel </button>
+		</div>
+	</div>
+</div>
+
+
+
+<div bsModal #confirmModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Process Confirmation</h4>
+				<button type="button" class="close" (click)="confirmModal.hide()" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p *ngIf="updatingTo == 'Active'"> Do you want to <b class="green-txt">activate</b> the account? If done, user can access the account further.</p>
+				<p *ngIf="updatingTo == 'Inactive'"> Do you want to <b class="purple-txt">inactivate</b> the account? If done, user can't access the account further. </p>
+				<p *ngIf="updatingTo == 'Blocked'"> Do you want to <b class="dark-txt">block</b> the account?  If done, user can access the account but can't post any jobs further. </p>
+				<p *ngIf="updatingTo == 'Rejected'"> Do you want to <b class="red-txt">reject</b> the request? </p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" (click)="confirmModal.hide()">Cancel</button>
+				<button type="button" class="btn btn-warning" (click)="updateStatus(updatingTo)">Continue...</button>
+			</div>
+		</div>
+	</div>
+</div>

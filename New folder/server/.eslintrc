@@ -1,0 +1,35 @@
+{
+    "extends": [
+        "eslint-config-airbnb-base",
+        "eslint-config-prettier",
+        "eslint:recommended",
+        "plugin:prettier/recommended"
+    ],
+    "plugins": [
+        "import",
+        "eslint-plugin-prettier",
+        "eslint-plugin-babel"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "prettier/prettier": [
+            "error"
+        ],
+        "no-param-reassign": [
+            2,
+            {
+                "props": false
+            }
+        ],
+        "no-console": 0,
+        "space-before-function-paren": 0,
+        "import/prefer-default-export": "off"
+    },
+    "env": {
+        "es6": true,
+        "node": true
+    }
+}

@@ -1,0 +1,52 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center" style="
+    background-image: url(../../assets/img/impImg/img1.jpg);">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <form role="form" #adminForm="ngForm">
+                  <h1>Login</h1>
+                  <p class="text-muted">Sign In to your account</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" name="userName" [(ngModel)]="userName" (ngModelChange)="onUSorPSchange()"  #usName="ngModel" class="form-control" placeholder="Username" autocomplete="username" required>
+                    <br>
+                    <div class="input-group mb-12" style="color: red;font-weight: 700;" *ngIf="loginSubmitFlag===true">
+                      <!-- <div  *ngIf="usName.errors?.required">Username required !</div> -->
+                      <show-error [control]="usName" [label]="{'labelName': 'User Name'}" [submitFlag]="loginSubmitFlag"></show-error>
+                    </div> 
+                  </div>
+                   <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password"  name='userPassword' #usPassword="ngModel" [(ngModel)]="userPassword" (ngModelChange)="onUSorPSchange()" class="form-control" placeholder="Password" autocomplete="current-password" required>
+                    <br>
+                    <div class="input-group mb-12" style="color: red;font-weight: 700;" *ngIf="loginSubmitFlag===true">
+                      <show-error [control]="usPassword" [label]="{'labelName': 'User Password'}" [submitFlag]="loginSubmitFlag"></show-error>
+                    </div>
+                  </div>
+                  <div  style="color: red;font-weight: 700;padding-bottom: 7px;" *ngIf="authResult && userName && userPassword">{{authResult}} !</div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="button" (click)="loginClick(adminForm)" class="btn btn-warning px-4">Login</button>
+                    </div>
+                    <div class="col-6 text-right">
+                      <button type="button" class="btn btn-link px-0" (click)="onForgotPSClick()"
+                       style="color: #ffc107 !important;">Forgot password?</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

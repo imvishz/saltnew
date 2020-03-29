@@ -1,0 +1,80 @@
+<div class="col-sm-12 col-md">
+	<div class="card">
+		<div class="card-header">
+      <small>view</small>
+      <strong>Job</strong>
+			<button *ngIf="!isUpdating" class="btn btn-pill btn-light pull-right" (click)="onBack()"><i class="icons mt-1 cui-action-undo"></i> Back to list </button>
+		</div>
+		<div class="card-body">
+      <form>
+            <div class="form-group">
+                <label for="contactPerson">Company Name</label>
+                <select class="custom-select" name="companyId" [(ngModel)]="jobDetail.companyId" #companyId="ngModel" [disabled]="true">
+					<option value="" disabled>Choose your company</option>
+					<option *ngFor="let company of companyList" [ngValue]="company._id">{{company.companyName}}</option>
+				 </select>
+                <!-- <input class="form-control onlyLable" name="jobName" type="text" [disabled]="true" [(ngModel)]="jobDetail.jobName" #jobName="ngModel"> -->
+            </div>
+			<div class="form-group">
+				<label for="contactPerson">Job Name</label>
+				<input class="form-control onlyLable" name="jobName" type="text" [disabled]="true" [(ngModel)]="jobDetail.jobName" #jobName="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Industry </label>
+				<input class="form-control onlyLable" name="industry" type="text" [disabled]="true" [(ngModel)]="jobDetail.industry" #industry="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">JobType</label>
+				<input class="form-control onlyLable" name="jobType" type="text" [disabled]="true" [(ngModel)]="jobDetail.jobType" #jobType="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Designation</label>
+				<input class="form-control onlyLable" name="designation" type="text" [disabled]="true" [(ngModel)]="jobDetail.designation" #designation="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Location</label>
+				<input class="form-control onlyLable" name="location" type="text" [disabled]="true" [(ngModel)]="jobDetail.location" #location="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Description</label>
+				<input class="form-control onlyLable" name="description" type="text" [disabled]="true" [(ngModel)]="jobDetail.description" #description="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Vacancy</label>
+				<input class="form-control onlyLable" name="vacancy" type="text" [disabled]="true" [(ngModel)]="jobDetail.vacancy" #vacancy="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Qualification</label>
+				<input class="form-control onlyLable" name="qualification" type="text" [disabled]="true" [(ngModel)]="jobDetail.qualification" #qualification="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Experience</label>
+				<input class="form-control onlyLable" name="experience" type="text" [disabled]="true" [(ngModel)]="jobDetail.experience" #experience="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Skills</label>
+				<input class="form-control onlyLable" name="skills" type="text" [disabled]="true" [(ngModel)]="jobDetail.skills" #skills="ngModel">
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Dop</label>
+				<ejs-datepicker id='datepicker' placeholder='Select a date' [readonly]="true"   [value]='jobDetail.dop' format ='dd-MM-yyyy'></ejs-datepicker>
+				<!-- <input class="form-control onlyLable" name="dop" type="text" [disabled]="true" [(ngModel)]="jobDetail.dop" #dop="ngModel"> -->
+            </div>
+            <div class="form-group">
+				<label for="contactPerson">Expiry Date</label>
+				<ejs-datepicker id='datepicker' placeholder='Select a date' [readonly]="true"  [value]='jobDetail.expiryDate' format ='dd-MM-yyyy'></ejs-datepicker>
+				<!-- <input class="form-control onlyLable" name="expiryDate" type="text" [disabled]="true" [(ngModel)]="jobDetail.expiryDate" #expiryDate="ngModel"> -->
+            </div>
+            
+	  </form>
+	  <br>
+	  <span *ngIf="pageType == 'jobpublish'" style="float: right;">
+		<button class="btn btn-md btn-ghost-primary" type="button" (click)="onJobApplyClick()"> Apply For The Job</button>
+	  </span>
+	  	</div>
+	</div>
+</div>
+
+
+
+

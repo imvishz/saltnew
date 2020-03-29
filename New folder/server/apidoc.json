@@ -1,0 +1,10 @@
+{
+    "name": "SALT-API-Document",
+    "version": "0.0.1",
+    "description": "Api docs of SALT",
+    "title": "SALT-API-Document",
+    "url" : "",
+    "template": {
+      "forceLanguage": "en"
+    }
+  }

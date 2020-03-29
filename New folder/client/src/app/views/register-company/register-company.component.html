@@ -1,0 +1,153 @@
+<div class="app-body" style="
+background-image: url(../../assets/img/bg/img1.jpg);">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card mx-4">
+            <div class="card-body p-4">
+              <form [formGroup]="companyForm">
+                <div style="text-align: center">
+                    <img src="assets/img/brand/saalt_logo.jpg" width="170" class="img-avatar" alt="Saalt"/>
+                    <h2> Registration </h2>
+                    <small class="text-muted">create your company account to post a job worldwide</small>
+                </div>
+                <br/>
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-home"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Company Name" autocomplete="username" formControlName="companyName">                  
+                  </div>
+                  <div *ngIf="submitted && f.companyName.errors" class="errMsg">* Company name required</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">@</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Company Email" autocomplete="email" formControlName="email">                    
+                  </div>
+                  <div *ngIf="submitted && f.email.errors?.required" class="errMsg">* Company email required</div>
+                  <div *ngIf="submitted && f.email.errors?.pattern" class="errMsg">* Enter a valid email</div>
+                </div>
+
+                <div class="form-group"> 
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock-open"></i></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" autocomplete="new-password" formControlName="password">                    
+                  </div>
+                  <div *ngIf="submitted && f.password.errors" class="errMsg">* Password required</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Confirm Password" autocomplete="new-password" formControlName="confirmPwd">                    
+                  </div>
+                  <div *ngIf="submitted && f.confirmPwd.errors" class="errMsg">* Confirm password required</div>
+                    <div *ngIf="submitted && mismatchPwd" class="errMsg">* Your password and confirm password do not match</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-people"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Contact Person" autocomplete="contactPerson" formControlName="contactPerson">                    
+                  </div>
+                  <div *ngIf="submitted && f.contactPerson.errors" class="errMsg">* Contact person required</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-phone"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Contact Number" autocomplete="contactNo" formControlName="contactNo">                    
+                  </div>
+                  <div *ngIf="submitted && f.contactNo.errors?.required" class="errMsg">* Contact number required</div>
+                  <div *ngIf="submitted && f.contactNo.errors?.pattern" class="errMsg">* Enter a valid contact number</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-direction"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Street" autocomplete="street" formControlName="street">                    
+                  </div>
+                  <div *ngIf="submitted && f.street.errors" class="errMsg">* Street required</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-direction"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="City" autocomplete="city" formControlName="city">                    
+                  </div>
+                  <div *ngIf="submitted && f.city.errors" class="errMsg">* City required</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-location-pin"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Postal Code" autocomplete="postalCode" formControlName="postalCode">                    
+                  </div>
+                  <div *ngIf="submitted && f.postalCode.errors?.required" class="errMsg">* Postal code required</div>
+                  <div *ngIf="submitted && f.postalCode.errors?.pattern" class="errMsg">* Invalid postal code</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="icon-globe"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Country" autocomplete="country" formControlName="country">                   
+                  </div>
+                  <div *ngIf="submitted && f.country.errors" class="errMsg">* Country required</div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group">
+                      <!-- <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-cloud-upload"></i></span>
+                      </div> -->
+                      <div style="position:relative;">
+                          <a class="btn up_btn afu-attach-pin" (click)="openDialog()" style="cursor: pointer;"> 
+                            Attach documents.. <i aria-hidden="true" class="fa fa-paperclip"></i>
+                            <input name="proof" hidden title="Select file" type="file" id='fileid' (change)="fileChange($event)" accept=".jpg,.png,.pdf"><br>
+                          </a> &nbsp; 
+                          <span class="label label-info" id="upload-file-info" *ngIf="uploadedFileName"> {{uploadedFileName}} </span>
+                        </div>                  
+                    </div>
+                </div>
+
+              <button type="button" class="btn btn-block btn-success"  (click)="onSubmit()">Create Account</button>
+              </form>
+            </div>
+            <!-- <div class="card-footer p-4">
+              <div class="row">
+                <div class="col-6">
+                  <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-block btn-twitter" type="button"><span>twitter</span></button>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

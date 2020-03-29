@@ -1,0 +1,132 @@
+<div class="col-sm-12 col-md">
+	<div class="card">
+		<div class="card-header">
+      		<small>{{feature}}</small> <strong>Profile</strong>
+			<button *ngIf="!isUpdating" class="btn btn-brand btn-css3 pull-right" (click)="updateClick()"><i class="icons cui-pencil"></i> </button>
+			<button *ngIf="isUpdating" class="btn btn-brand btn-vk pull-right" (click)="updateClick()"><i class="icons cui-circle-x"></i> </button>
+		</div>
+		<div class="card-body">
+      	<form>
+		  	<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="company">First Name</label>
+						<input class="form-control " name="firstName" type="text" [disabled]="!isUpdating" [(ngModel)]="userDetail.firstName" #firstName="ngModel" [ngClass]="{'onlyLable': !isUpdating, 'onlyBtm': isUpdating}">
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="company">Last Name</label>
+						<input class="form-control " name="lastName" type="text" [disabled]="!isUpdating" [(ngModel)]="userDetail.lastName" #lastName="ngModel" [ngClass]="{'onlyLable': !isUpdating, 'onlyBtm': isUpdating}">
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input class="form-control" name="email" type="email" disabled [(ngModel)]="userDetail.email" #email="ngModel" [ngClass]="{'onlyLable': !isUpdating, 'onlyBtm': isUpdating}">
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="contactNo">Mobile Number</label>
+						<input class="form-control " name="mobile" type="text" [disabled]="!isUpdating" [(ngModel)]="userDetail.mobile" #mobile="ngModel" [ngClass]="{'onlyLable': !isUpdating, 'onlyBtm': isUpdating}">
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="street">Date Of Birth</label>
+						<input class="form-control " name="dob" type="date" [disabled]="!isUpdating" [(ngModel)]="userDetail.dob" #dob="ngModel" [ngClass]="{'onlyLable': !isUpdating, 'onlyBtm': isUpdating}">
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="street">Industry</label>
+						<ejs-multiselect name="industry" [dataSource]='industries' [disabled]="!isUpdating" [maximumSelectionLength]='1' [mode]="'default'" [fields]='fields' [(ngModel)]="userDetail.industry" #industry="ngModel"></ejs-multiselect>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="street">Employee Type</label>
+						<div class="col-md-12 col-form-label">
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" id="fresher" type="radio" value="fresher" name="employeeType" [(ngModel)]="userDetail.employeeType">
+								<label class="form-check-label" for="fresher">Fresher</label>
+							</div>
+							<div class="form-check form-check-inline col-md-3">
+								<input class="form-check-input" id="experienced" type="radio" value="experienced" name="employeeType" [(ngModel)]="userDetail.employeeType">
+								<label class="form-check-label" for="experienced">Experienced</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="street">Experience <small> (Eg: 5.2 Yrs, 0.11 Yrs) </small> </label>
+						<input class="form-control " name="experience" type="text" [disabled]="!isUpdating" [(ngModel)]="userDetail.experience" #experience="ngModel" [ngClass]="{'onlyLable': !isUpdating, 'onlyBtm': isUpdating}">
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="street">Qualification</label>
+						<ejs-multiselect name="qualification" [dataSource]='qualifications' [disabled]="!isUpdating" [maximumSelectionLength]='1' [mode]="'default'" [fields]='fields' [(ngModel)]="userDetail.qualification" #qualification="ngModel"></ejs-multiselect>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="street">Skill Set</label>
+						<ejs-multiselect name="skillset" [dataSource]='skills' [disabled]="!isUpdating" [mode]='box' [fields]='fields' [(ngModel)]="userDetail.skillset" #skillset="ngModel"></ejs-multiselect>
+					</div>
+				</div>	
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="street">Preffered Location</label>
+						<ejs-multiselect name="location" [dataSource]='locations' [disabled]="!isUpdating" [maximumSelectionLength]='1' [mode]="'default'" [fields]='fields' [(ngModel)]="userDetail.location" #location="ngModel"></ejs-multiselect>
+					</div>
+				</div>	
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="street">Expected CTC <small> (in lacs Eg: 2.5L, 7L) </small> </label>
+						<input class="form-control " name="exptCtc" type="text" [disabled]="!isUpdating" [(ngModel)]="userDetail.exptCtc" #exptCtc="ngModel" [ngClass]="{'onlyLable': !isUpdating, 'onlyBtm': isUpdating}">
+					</div>
+				</div>				
+
+			</div>		
+
+			<div class="form-group" *ngIf="userDetail.orginalFilePath">
+				<label for="street">Resume</label><br/>
+				<a href="{{userDetail.orginalFilePath}}" download="{{userDetail.fileName}}" target="_blank">
+					<img src="{{userDetail.orginalFilePath}}" alt="W3Schools" width="100" height="100">
+				</a>
+			</div>
+
+			
+			<div class="row" *ngIf=isUpdating>				
+				
+				<div class="form-group col-sm-6">
+					<label for="street">Upload Business License</label><br/>
+					<a class="btn up_btn afu-attach-pin" (click)="openDialog()" style="cursor: pointer"> 
+						Attach company license documents.. <i aria-hidden="true" class="fa fa-paperclip"></i>
+						<input name="proof" hidden title="Select file" type="file" id='fileid' (change)="fileChange($event)" accept=".jpg,.png,.pdf"><br>
+					</a> &nbsp; 
+					<span class="label label-info" id="upload-file-info" *ngIf="uploadedFileName"> {{uploadedFileName}} </span>
+				</div>
+			</div>
+			
+      </form>
+		</div>
+		<div class="card-footer" *ngIf="isUpdating">
+			<button class="btn btn-warning pull-right" type="submit" (click)="updateProfile()"><i class="fa fa-dot-circle-o"></i> Update </button>
+		</div>
+	</div>
+</div>
