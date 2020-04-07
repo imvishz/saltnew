@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
       this.submitted = true;
       this.loading = true;
       this.mismatchPwd = false;
-      if( this.userForm.status == 'INVALID' ){
+      if( this.userForm.status === 'INVALID' ){
           return true;
       } else if( this.userForm.value.password !== this.userForm.value.confirmPwd ){
         this.mismatchPwd = true;
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
       }
 
       this.dataService.post('/api/user-profile/register', obj).subscribe((res): any => {
-        if(res['code'] == 200) {
+        if(res['code'] === 200) {
           this.comm.sendMessage(JSON.stringify({content:"User registered successfully",title:"Registration",type:"S"}));
             this.router.navigate(['/userlogin']);
         } else {
